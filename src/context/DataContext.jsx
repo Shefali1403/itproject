@@ -2,7 +2,7 @@ import { createContext, useState, useEffect } from "react";
 import { getAllProducts, getCategories } from "../api/Apidata";
 export const DataContext = createContext();
 
-export default function DataProvider({ children }) {
+export default function DataProvider(prop){
   const [data, setData] = useState(null);
   const [category, setCategory] = useState(null);
   const [cart, setCart] = useState([]);
@@ -21,22 +21,26 @@ export default function DataProvider({ children }) {
     });
   }
 
+
+
   useEffect(() => {
     getAllProducts().then((data) => setData(data));
     getCategories().then((data) => setCategory(data));
   }, []);
-  return (
-    <DataContext.Provider
-      value={{
-        data,
-        setData,
-        category,
-        setCategory,
-        addtocart,
-        removefromcart,
-      }}
-    >
-      {children}
-    </DataContext.Provider>
-  );
+
+  useEffect(() =>  {
+    console.log(cart)
+  }, [cart])
+
+  return <DataContext.Provider value = {{
+    data,
+    setData,
+    category,
+    setCategory,
+    cart,
+    addtocart,
+    removefromcart,
+  }}> 
+    {prop.children}
+  </DataContext.Provider>
 }

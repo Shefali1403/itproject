@@ -3,9 +3,7 @@ import { useContext } from "react";
 import {getProductsFromCategory} from '../api/Apidata';
 import Card from "../components/Card";
 const Productpage = () => {
-  const {data, setData, category} = useContext(DataContext);
-  console.log(data)
-  
+  const {data, setData, category} = useContext(DataContext); 
   return (
     <>
       <div className="product-cont">
