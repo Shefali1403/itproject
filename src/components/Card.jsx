@@ -1,4 +1,5 @@
-import React from "react";
+import { DataContext } from "../context/DataContext";
+import { useContext } from "react";
 import {
   MDBCard,
   MDBCardBody,
@@ -9,17 +10,29 @@ import {
 } from "mdb-react-ui-kit";
 
 export default function App(prop) {
+  const { addtocart } = useContext(DataContext);
   return (
     <>
-      <MDBCard class="card-cont">
+      <MDBCard className="card-cont">
         <div className="img-cont">
-        <MDBCardImage src={prop.image} alt="..."></MDBCardImage>
+          <MDBCardImage src={prop.image} alt="..."></MDBCardImage>
         </div>
         <MDBCardBody>
-          <MDBCardTitle className = 'card-cont-body-title'>{prop.title}</MDBCardTitle>
-          <MDBCardText className="card-cont-body-desc">{prop.description}</MDBCardText>
+          <MDBCardTitle className="card-cont-body-title">
+            {prop.title}
+          </MDBCardTitle>
+          <MDBCardText className="card-cont-body-desc">
+            {prop.description}
+          </MDBCardText>
         </MDBCardBody>
-        <MDBBtn href="#"  className="card-cont-btn">Shop</MDBBtn>
+        <MDBBtn
+          className="card-cont-btn"
+          onClick={() => {
+            addtocart(prop.image, prop.price, 1, prop.title);
+          }}
+        >
+          Shop
+        </MDBBtn>
       </MDBCard>
     </>
   );

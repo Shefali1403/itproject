@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 import Homepage from "./pages/Homepage";
 import Contactpage from "./pages/Contactpage";
@@ -11,8 +11,11 @@ import Errorpage from "./pages/Errorpage";
 import CartPage from "./pages/CartPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import DataProvider from "./context/DataContext";
 const App=()=>{
   return(
+    <DataProvider>
+
     <Router>
       <div className="maincontainer">
 
@@ -30,6 +33,7 @@ const App=()=>{
       <Footer/>
       </div>
     </Router>
+    </DataProvider>
   )
 }
 export default App;

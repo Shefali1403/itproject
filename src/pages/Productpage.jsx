@@ -1,17 +1,11 @@
-import { useEffect, useState } from "react";
-import {
-  getAllProducts,
-  getCategories,
-  getProductsFromCategory,
-} from "../api/Apidata";
+import { DataContext } from "../context/DataContext";
+import { useContext } from "react";
+import {getProductsFromCategory} from '../api/Apidata';
 import Card from "../components/Card";
 const Productpage = () => {
-  const [data, setData] = useState(null);
-  const [category, setCategory] = useState(null);
-  useEffect(() => {
-    getAllProducts().then((data) => setData(data));
-    getCategories().then((data) => setCategory(data));
-  }, []);
+  const {data, setData, category} = useContext(DataContext);
+  console.log(data)
+  
   return (
     <>
       <div className="product-cont">
@@ -21,6 +15,7 @@ const Productpage = () => {
             {category !== null ? (
               category.map((item) => (
                 <div
+                  key = {item}
                   className="p-2 categ-list"
                   onClick={() => {
                     getProductsFromCategory(item).then((data) => setData(data));
@@ -43,6 +38,7 @@ const Productpage = () => {
                 image={item.image}
                 title={item.title}
                 description={item.description}
+                price = {item.price}
               />
             ))
           ) : (

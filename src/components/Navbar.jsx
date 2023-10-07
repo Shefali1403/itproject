@@ -70,7 +70,10 @@ export default function App() {
            <MDBNavbarLink href='#'>
              <MDBBadge pill color='danger'>!</MDBBadge>
              <span>
+              <NavLink to="/cart">
                <MDBIcon fas icon='shopping-cart'></MDBIcon>
+
+              </NavLink>
              </span>
            </MDBNavbarLink>
          </MDBNavbarItem>
