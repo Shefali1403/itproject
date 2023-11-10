@@ -9,23 +9,6 @@ import CartPage from "./pages/CartPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import DataProvider from "./context/DataContext";
-<<<<<<< HEAD
-const App = () => {
-  return (
-    <DataProvider>
-      <Router>
-        <div className="maincontainer">
-          <Header />
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/about" element={<Aboutpage />} />
-            <Route path="/product" element={<Productpage />} />
-            <Route path="/contact" element={<Contactpage />} />
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="*" element={<Errorpage />} />
-          </Routes>
-          <Footer />
-=======
 const App=()=>{
     return(
     <DataProvider>
@@ -43,7 +26,6 @@ const App=()=>{
           <Route path="*" element={<Errorpage/>}/>
         </Routes>
         <Footer/>
->>>>>>> origin/master
         </div>
       </Router>
     </DataProvider>
