@@ -1,22 +1,56 @@
+import { getProductsFromCategory } from "../api/Apidata";
 import { DataContext } from "../context/DataContext";
 import { useContext } from "react";
-import {getProductsFromCategory} from '../api/Apidata';
-import Card from "../components/Card";
+// import Card from "../components/Card";
+
+function Card(props) {
+  const { addtocart } = useContext(DataContext);
+  return (
+    <div className="card-cont">
+      <img src={props.image} height={250} />
+      <span className="title">{props.title}</span>
+      <div className="butt">
+        <span className="price">Price : ${props.price}</span>
+        <span
+          className="price"
+          onClick={() => {
+            addtocart(props.id, props.image, props.price, props.title);
+          }}
+        >
+          Buy
+        </span>
+      </div>
+    </div>
+  );
+}
+
 const Productpage = () => {
-  const {data, setData, category} = useContext(DataContext);
-  console.log(data)
-  
+  const { data, setData, category } = useContext(DataContext);
+
+  // {
+  //   "id": 1,
+  //   "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+  //   "price": 109.95,
+  //   "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+  //   "category": "men's clothing",
+  //   "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+  //   "rating": {
+  //     "rate": 3.9,
+  //     "count": 120
+  //   }
+  // }
+
   return (
     <>
       <div className="product-cont">
         <div className="product-cont-part1">
           <h1>Categories</h1>
-          <div className="d-flex flex-column mb-3 categ">
+          <div className="categories-list">
             {category !== null ? (
-              category.map((item) => (
+              category.map((item, index) => (
                 <div
-                  key = {item}
-                  className="p-2 categ-list"
+                  className="list-item"
+                  key={index}
                   onClick={() => {
                     getProductsFromCategory(item).then((data) => setData(data));
                   }}
@@ -25,28 +59,28 @@ const Productpage = () => {
                 </div>
               ))
             ) : (
-              <p>loading...</p>
+              <p>loading....</p>
             )}
           </div>
         </div>
-
         <div className="product-cont-part2">
           {data !== null ? (
             data.map((item) => (
               <Card
                 key={item.id}
+                id={item.id}
                 image={item.image}
+                price={item.price}
                 title={item.title}
-                description={item.description}
-                price = {item.price}
               />
             ))
           ) : (
-            <p>Loading...</p>
+            <p>loading...</p>
           )}
         </div>
       </div>
     </>
   );
 };
+
 export default Productpage;

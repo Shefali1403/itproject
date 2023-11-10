@@ -7,10 +7,43 @@ export default function DataProvider({ children }) {
   const [category, setCategory] = useState(null);
   const [cart, setCart] = useState([]);
 
-  function addtocart(image, price, quantity, title) {
+  function addtocart(id, image, price, title) {
     setCart((prev) => {
-      const updated_value = [...prev, { image, price, quantity, title }];
+      const updated_value = [...prev];
+      let flag = 0;
+      for (let item of updated_value) {
+        if (id === item.id) {
+          item.quantity++;
+          flag = 1;
+        }
+      }
+
+      if (!flag) {
+        updated_value.push({
+          id,
+          image,
+          price,
+          title,
+          quantity: 1,
+        });
+      }
       console.log(updated_value);
+      return updated_value;
+    });
+  }
+
+  function update_quantity(id, action) {
+    setCart((prev) => {
+      const updated_value = [...prev];
+      updated_value.forEach((item) => {
+        if (item.id === id) {
+          if (action === "inc") item.quantity++;
+          if (action === "dec") item.quantity--;
+          if (item.quantity <= 0) {
+            removefromcart(item.id);
+          }
+        }
+      });
       return updated_value;
     });
   }
@@ -25,15 +58,18 @@ export default function DataProvider({ children }) {
     getAllProducts().then((data) => setData(data));
     getCategories().then((data) => setCategory(data));
   }, []);
+
   return (
     <DataContext.Provider
       value={{
         data,
+        cart,
         setData,
         category,
         setCategory,
         addtocart,
         removefromcart,
+        update_quantity,
       }}
     >
       {children}
