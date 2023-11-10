@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { DataContext } from "../context/DataContext";
@@ -33,10 +34,30 @@ const CartPage = () => {
     setTotalPrice(sum);
   }, [cart]);
 
+=======
+import React from "react";
+import { useContext } from "react";
+import { DataContext } from "../context/DataContext";
+
+import CardCart from "../components/CartCard";
+
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBCardImage,
+  MDBBtn,
+} from "mdb-react-ui-kit";
+const CartPage = () => {
+  const {cart} = useContext(DataContext);
+  console.log(cart)
+>>>>>>> origin/master
   return (
     <>
       <h1>cartpage</h1>
       <div className="cart-cont">
+<<<<<<< HEAD
         <div className="products-cont">
           {cart.map((item) => (
             <Product
@@ -56,6 +77,15 @@ const CartPage = () => {
             </span>
             <button className="price">Pay</button>
           </div>
+=======
+        <div className="cart-box box1">
+          {cart.map(item => <CardCart 
+            image = {item.image}
+          />)}
+        </div>
+        <div className="cart-box box2">
+          world
+>>>>>>> origin/master
         </div>
       </div>
     </>

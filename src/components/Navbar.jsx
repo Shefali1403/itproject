@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 import React, { useState, useContext } from "react";
 import { DataContext } from "../context/DataContext";
 import { NavLink } from "react-router-dom";
+=======
+import React, { useContext, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+>>>>>>> origin/master
 import {
   MDBContainer,
   MDBNavbar,
@@ -11,12 +16,23 @@ import {
   MDBCollapse,
   MDBBadge,
   MDBIcon,
+<<<<<<< HEAD
   MDBBtn,
 } from "mdb-react-ui-kit";
 
 export default function App() {
   const [showNav, setShowNav] = useState(false);
   const { cart } = useContext(DataContext);
+=======
+  MDBBtn
+} from 'mdb-react-ui-kit';
+import { DataContext } from '../context/DataContext';
+import { createDispatchHook } from 'react-redux';
+
+export default function App() {
+  const [showNav, setShowNav] = useState(false);
+  const {cart} = useContext(DataContext)
+>>>>>>> origin/master
   return (
     <>
       <MDBNavbar expand="lg" light bgColor="light">
@@ -92,8 +108,33 @@ export default function App() {
               </MDBNavbarLink>
             </MDBNavbarItem>
           </MDBNavbarNav>
+<<<<<<< HEAD
         </MDBContainer>
       </MDBNavbar>
     </>
+=======
+        </MDBCollapse>
+      </MDBContainer>
+    </MDBNavbar>
+    <MDBBtn style={{width:'8vw', height:'6vh', marginTop:'1rem'}}>Shop</MDBBtn>
+     <MDBNavbar expand='lg' light bgColor='light'>
+     <MDBContainer fluid>
+       <MDBNavbarNav>
+         <MDBNavbarItem>
+           <MDBNavbarLink href='#'>
+             {cart.length !== 0 ? <MDBBadge pill color='danger'>{cart.length}</MDBBadge> : null}
+             <span>
+              <NavLink to="/cart">
+               <MDBIcon fas icon='shopping-cart'></MDBIcon>
+
+              </NavLink>
+             </span>
+           </MDBNavbarLink>
+         </MDBNavbarItem>
+       </MDBNavbarNav>
+     </MDBContainer>
+   </MDBNavbar>
+   </>
+>>>>>>> origin/master
   );
 }
