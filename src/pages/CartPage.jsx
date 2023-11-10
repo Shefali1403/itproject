@@ -8,9 +8,9 @@ function Product({ id, image, quantity, price, update_quantity }) {
         <img src={image} />
         <div className="info">
           <div className="quantiy">
-            <button onClick={() => update_quantiy(id, "inc")}>+</button>
+            <button onClick={() => update_quantity(id, "inc")}>+</button>
             <span>{quantity}</span>
-            <button onClick={() => update_quantiy(id, "dec")}>-</button>
+            <button onClick={() => update_quantity(id, "dec")}>-</button>
           </div>
           <div className="price">
             <b>Price:{price * quantity}</b>
