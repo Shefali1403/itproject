@@ -25,8 +25,7 @@ function Card(props) {
 }
 
 const Productpage = () => {
-
-  const {data, setData, category} = useContext(DataContext); 
+  const { data, setData, category } = useContext(DataContext);
   return (
     <>
       <div className="product-cont">

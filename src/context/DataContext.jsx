@@ -2,7 +2,7 @@ import { createContext, useState, useEffect } from "react";
 import { getAllProducts, getCategories } from "../api/Apidata";
 export const DataContext = createContext();
 
-export default function DataProvider(prop) {
+export default function DataProvider({ children }) {
   const [data, setData] = useState(null);
   const [category, setCategory] = useState(null);
   const [cart, setCart] = useState([]);
